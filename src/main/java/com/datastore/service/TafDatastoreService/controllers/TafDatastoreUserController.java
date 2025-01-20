@@ -40,7 +40,7 @@ public class TafDatastoreUserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Users> updateUser(@PathVariable Long id, @RequestBody Users user){
-        user.setId(id);
+        user.setUserId(id);
         if (user.getEmail() == null || user.getEmail().isEmpty()) {
             throw new IllegalArgumentException("Email cannot be null or empty");
         }

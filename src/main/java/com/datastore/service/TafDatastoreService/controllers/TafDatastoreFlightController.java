@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/flights")
 public class TafDatastoreFlightController {
+    @Autowired
     private final FlightRepository flightRepository;
 
     @Autowired
@@ -36,7 +37,7 @@ public class TafDatastoreFlightController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Flights> updateFlight(@PathVariable Long id, @RequestBody Flights flights){
-        flights.setId(id);
+        flights.setFlightId(id);
         Flights updatedFlight = flightRepository.save(flights);
         return ResponseEntity.ok(updatedFlight);
     }
