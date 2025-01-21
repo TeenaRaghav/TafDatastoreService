@@ -20,10 +20,8 @@ public class Users {
     @Column(name = "phone_number", length = 20 )
     private String phone;
     @Column(name = "created_at",updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime updatedAt;
 
     @PrePersist

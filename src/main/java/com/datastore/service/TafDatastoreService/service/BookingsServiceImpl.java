@@ -10,6 +10,9 @@ import com.datastore.service.TafDatastoreService.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class BookingsServiceImpl {
     @Autowired
@@ -55,10 +58,12 @@ public class BookingsServiceImpl {
         dto.setUserId(booking.getUser().getUserId());  // Map userId from User object
         dto.setFlightId(booking.getFlight().getFlightId());  // Map flightId from Flight object
         dto.setStatus(booking.getStatus());
+        dto.setMessage(booking.getMessage());
         dto.setCreatedAt(booking.getCreatedAt());
         dto.setUpdatedAt(booking.getUpdatedAt());
         return dto;
     }
+
 
     // Utility method to create a response DTO
     private BookingDTO createBookingResponse(Long id, String status, String message, Long userId, Long flightId) {
@@ -69,6 +74,10 @@ public class BookingsServiceImpl {
         responseDTO.setUserId(userId);
         responseDTO.setFlightId(flightId);
         return responseDTO;
+    }
+
+    public List<Bookings> findBookingsByUserId(Long userId) {
+        return bookingsRepository.findByUser_UserId(userId);
     }
 }
 
